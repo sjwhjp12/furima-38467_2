@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_13_091824) do
+ActiveRecord::Schema.define(version: 2022_10_13_113055) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -33,6 +33,11 @@ ActiveRecord::Schema.define(version: 2022_10_13_091824) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "item_name"
     t.text "item_text"
@@ -49,16 +54,8 @@ ActiveRecord::Schema.define(version: 2022_10_13_091824) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "prefecture_id"
-    t.string "city"
-    t.string "building"
-    t.string "addresses"
-    t.string "phone_number"
-    t.bigint "purchase_record_id", null: false
-    t.string "postal_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["purchase_record_id"], name: "index_orders_on_purchase_record_id"
   end
 
   create_table "purchase_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -70,27 +67,22 @@ ActiveRecord::Schema.define(version: 2022_10_13_091824) do
     t.index ["user_id"], name: "index_purchase_records_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "nick_name", default: "", null: false
-    t.string "last_name", default: "", null: false
-    t.string "first_name", default: "", null: false
-    t.string "last_name_kana", default: "", null: false
-    t.string "first_name_kana", default: "", null: false
-    t.date "birth", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+  create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "email", default: "", null: false
+    t.date "birth", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items", "users"
-  add_foreign_key "orders", "purchase_records"
   add_foreign_key "purchase_records", "items"
   add_foreign_key "purchase_records", "users"
 end
