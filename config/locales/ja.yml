@@ -1,0 +1,27 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nick_name: ニックネーム
+        last_name: 苗字
+        first_name: 名前
+        last_name_kana: 苗字（カナ）
+        first_name_kana: 名前（カナ）
+        birth: 誕生日
+      item:
+        text: テキスト
+        image: 画像
+        item_name: 商品名
+        item_text: 商品情報
+        category_id: カテゴリー
+        status_id: 状態
+        shipping_status_id: 発送方法
+        prefecture_id: 発送元都道府県
+        scheduled_delivery_id: 発送目安
+        price: 値段
+      order_purchase_record:
+        prefecture_id: 発送先都道府県
+        city: 発送先市町村
+        addresses: 発送先番地
+        phone_number: 携帯電話番号
+        postal_code: 郵便番号

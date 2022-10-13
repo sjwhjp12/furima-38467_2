@@ -1,0 +1,1 @@
+console.log("JavaScriptを実行しています");
